@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Vue Mastery</title>
+  <!-- Import Styles -->
+  <link rel="stylesheet" href="./assets/styles.css" />
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{producto}}</h1>
+    <h2>{{pato}}</h2>
+    <div class="cart">{{unidades}} unidades</div>
+    <p v-if="stock>5">Disponible</p>
+    <p v-else-if="stock>0">Últimas unidades</p>
+    <p v-else>No disponible</p>
+    <ul>
+      <li v-for="detalle, indice in detalles">{{indice + ': ' + detalle}}</li>
+    </ul>
+    <div v-show="stock > 0" class="product-image">
+      <a :href=url><img :src=img :title=tooltip alt=""></a>
+
+    </div>
+    <div v-for="color in colores" :key="color.cod">{{color.color}}</div>
+    <p v-if="enOferta">Ahora en oferta!!</p>
+
+    <button class="button" v-on:click="unidades++">Compra</button>
+  </div>
+
+
+  <!-- Import Js -->
+  <script src="./app.js"></script>
+</body>
+
+</html>
