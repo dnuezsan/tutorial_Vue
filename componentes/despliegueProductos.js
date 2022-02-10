@@ -34,7 +34,7 @@ app.component('despliegue_productos', {
     <p v-if="enOferta">Ahora en oferta!!</p>
     <p v-if="enOferta">Envío: {{entrega()}}</p>
     <!-- <button class="button" v-on:click="unidades++">Compra</button> -->
-    <button class="boton" @click="unidades++">Compra</button>
+    <button class="boton" @click="meter_en_carro">Compra</button>
     <!-- otra forma de hacer el evento más corta es cambiar "v-on:e" por "@e" donde "e" es el evento -->
     <button class="boton" @click="unidades--">Eliminar</button>
   </div>`,
@@ -68,9 +68,10 @@ app.component('despliegue_productos', {
       this.titulo = nombre
     },
 
-
+    /* El emitidor permite utilizar un metodo del componente padre desde el componente hijo*/
+    /* Hay que llamar al emitidor en el elemento del template tambien para indicar el tipo de evento que la desencadena */
     meter_en_carro(){
-      this.emit('carrito')
+      this.$emit('carrito')
     },
 
     entrega() {
