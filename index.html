@@ -11,29 +11,44 @@
 </head>
 
 <body>
+  <!-- html original de la aplicacion. Sus atributos dependen del archivo app.js  -->
   <div id="app">
-    <h1>{{producto}}</h1>
+    <h1>Calcetines {{titulo}}</h1>
     <h2>{{pato}}</h2>
-    <div class="cart">{{unidades}} unidades</div>
+    <div class="carro">{{unidades}} unidades</div>
     <p v-if="stock>5">Disponible</p>
     <p v-else-if="stock>0">Últimas unidades</p>
     <p v-else>No disponible</p>
     <ul>
       <li v-for="detalle, indice in detalles">{{indice + ': ' + detalle}}</li>
     </ul>
+
+    <div v-for="modelo in modelos">
+      <!-- v-bind:style="{backgroundColor: modelo.color}" tambien funciona -->
+      <div class="circulo_de_color" :key="modelo.cod" v-bind:style="{'background-color': modelo.color}"
+        @mouseover="cambioImagen(modelo.img), titular(modelo.colorCastellano)">
+      </div>
+    </div>
     <div v-show="stock > 0" class="product-image">
       <a :href=url><img :src=img :title=tooltip alt=""></a>
-
     </div>
-    <div v-for="color in colores" :key="color.cod">{{color.color}}</div>
+    <!--     <div v-for="color in colores" :key="color.cod">{{color.color}}</div> -->
     <p v-if="enOferta">Ahora en oferta!!</p>
 
-    <button class="button" v-on:click="unidades++">Compra</button>
+    <!-- <button class="button" v-on:click="unidades++">Compra</button> -->
+    <button class="boton" @click="unidades++">Compra</button>
+    <!-- otra forma de hacer el evento más corta es cambiar "v-on:e" por "@e" donde "e" es el evento -->
+    <button class="boton" @click="unidades--">Eliminar</button>
+    
+    <!-- Componentes. Sus atributos dependen del archivo que los genera (despliegueProductos.js) -->
+    <despliegue_productos></despliegue_productos>
+    <despliegue_productos></despliegue_productos>
+
+
   </div>
-
-
   <!-- Import Js -->
   <script src="./app.js"></script>
+  <script src="componentes/despliegueProductos.js"></script>
 </body>
 
 </html>
