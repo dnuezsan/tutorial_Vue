@@ -30,6 +30,10 @@ const app = Vue.createApp(
                 /* iguala el titulo del objeto a la cadena que recibe*/
                 titular(nombre){
                     this.titulo = nombre
+                },
+
+                actualizarCarrito(){
+                    this.unidades += 1
                 }
         }
     }

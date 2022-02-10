@@ -41,8 +41,8 @@
     <button class="boton" @click="unidades--">Eliminar</button>
     
     <!-- Componentes. Sus atributos dependen del archivo que los genera (despliegueProductos.js) -->
-    <despliegue_productos></despliegue_productos>
-    <despliegue_productos></despliegue_productos>
+    <despliegue_productos :premium="true" @carrito="actualizarCarrito"></despliegue_productos>
+    <despliegue_productos :premium="false" @carrito="actualizarCarrito"></despliegue_productos>
 
 
   </div>
