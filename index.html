@@ -15,7 +15,7 @@
   <div id="app">
     <h1>Calcetines {{titulo}}</h1>
     <h2>{{pato}}</h2>
-    <div class="carro">{{unidades}} unidades</div>
+    <div class="carro">{{unidades.length}} unidades</div>
     <p v-if="stock>5">Disponible</p>
     <p v-else-if="stock>0">Últimas unidades</p>
     <p v-else>No disponible</p>
@@ -36,10 +36,10 @@
     <p v-if="enOferta">Ahora en oferta!!</p>
 
     <!-- <button class="button" v-on:click="unidades++">Compra</button> -->
-    <button class="boton" @click="unidades++">Compra</button>
+    <button class="boton" @click="actualizarCarrito(this.img)">Compra</button>
     <!-- otra forma de hacer el evento más corta es cambiar "v-on:e" por "@e" donde "e" es el evento -->
-    <button class="boton" @click="unidades--">Eliminar</button>
-    
+    <button class="boton" @click="actualizarCarrito(this.img)">Eliminar</button>
+
     <!-- Componentes. Sus atributos dependen del archivo que los genera (despliegueProductos.js) -->
     <despliegue_productos :premium="true" @carrito="actualizarCarrito"></despliegue_productos>
     <despliegue_productos :premium="false" @carrito="actualizarCarrito"></despliegue_productos>
@@ -49,6 +49,8 @@
   <!-- Import Js -->
   <script src="./app.js"></script>
   <script src="componentes/despliegueProductos.js"></script>
+  <script src="componentes/formulario_opiniones.js"></script>
+  <script src="componentes/lista_opiniones.js"></script>
 </body>
 
 </html>

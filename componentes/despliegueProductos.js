@@ -37,6 +37,11 @@ app.component('despliegue_productos', {
     <button class="boton" @click="meter_en_carro">Compra</button>
     <!-- otra forma de hacer el evento más corta es cambiar "v-on:e" por "@e" donde "e" es el evento -->
     <button class="boton" @click="unidades--">Eliminar</button>
+
+    <lista_opiniones v-if="opiniones.length" :opiniones=opiniones></lista_opiniones>
+
+    <formulario_opiniones @envio_opinion=subir_opinion></formulario_opiniones>
+    
   </div>`,
 
   data() {
@@ -49,6 +54,7 @@ app.component('despliegue_productos', {
       url: 'https://es.wikipedia.org/wiki/Pato_Donald',
       stock: 8,
       enOferta: true,
+      opiniones: [],
       detalles: ['50% algodón', '30% lana', '20% otros materiales'],
       colores: [{ cod: 'A020', color: "green" }, { cod: "B022", color: "blue" }],
       unidades: 0,
@@ -70,8 +76,10 @@ app.component('despliegue_productos', {
 
     /* El emitidor permite utilizar un metodo del componente padre desde el componente hijo*/
     /* Hay que llamar al emitidor en el elemento del template tambien para indicar el tipo de evento que la desencadena */
-    meter_en_carro(){
-      this.$emit('carrito')
+    meter_en_carro() {
+      /* Para poder emitir los datos, el método del componente padre no debe recibir otros parametros.
+      Ejemplo de esto en index.html, metodo:actualizarCarrito */
+      this.$emit('carrito', this.img)
     },
 
     entrega() {
@@ -80,6 +88,10 @@ app.component('despliegue_productos', {
       } else {
         return 2.39
       }
+    },
+
+    subir_opinion(opinion){
+      this.opiniones.push(opinion)
     }
   }
 }

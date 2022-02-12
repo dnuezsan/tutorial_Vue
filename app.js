@@ -6,8 +6,8 @@ const app = Vue.createApp(
         data() {
             return {
                 titulo : '',
-                producto,
-                pato,
+                producto, /* coge el valor de la variable externa */
+                pato, /* coge el valor de la variable externa */
                 img :"assets/images/socks_blue.jpg",
                 tooltip:'Sin agujeros',
                 url:'https://es.wikipedia.org/wiki/Pato_Donald',
@@ -15,7 +15,7 @@ const app = Vue.createApp(
                 enOferta : true,
                 detalles:['50% algodón', '30% lana', '20% otros materiales'],
                 colores:[{cod:'A020', color:"green"}, {cod:"B022", color:"blue"}],
-                unidades: 0,
+                unidades: [],
                 modelos:[{cod:'A020', color:"green", img:"assets/images/socks_green.jpg", colorCastellano:'verdes'}, {cod:"B022", color:"blue", img:"assets/images/socks_blue.jpg", colorCastellano:'azules'}],
             }
             
@@ -32,9 +32,15 @@ const app = Vue.createApp(
                     this.titulo = nombre
                 },
 
-                actualizarCarrito(){
-                    this.unidades += 1
-                }
+                actualizarCarrito(datos){
+                    this.unidades.push(datos)
+                    /* this.unidades += 1 */
+                },
+
+                /* aniadirACarrito(datos){
+                    
+                    this.unidades.push(datos)
+                } */
         }
     }
 )
